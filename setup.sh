@@ -1,45 +1,24 @@
-echo "=== installing brew ==="
-if [[ "$(which brew)" =~ "not found" ]]; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
+# helpers
+function has_no() {
+  if [[ "$(which $1)" =~ "not found" ]]; then
+    return 1
+  else
+    return 0
+  fi
+}
 
-echo "=== installing oh-my-zsh ==="
-if [[ "$(which omz)" =~ "not found" ]]; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-
-echo
-brew update
-
-# install cli tools
-echo
-echo "=== installing cli tools ==="
-function install_cli() {
+function brew_install() {
   echo "installing $1"
   if [[ "$(which $1)" =~ "not found" ]]; then
-    if [[ -z "$2" ]]; then
+    pkg=$2
+    if [[ -z "$pkg" ]]; then
       pkg=$1
-    else
-      pkg=$2
     fi
     brew install $pkg
   fi
 }
-install_cli wget
-install_cli fzf
-install_cli rg
-install_cli fd
-install_cli jq
-install_cli tmux
-install_cli tpm
-install_cli nvim neovim
-install_cli asdf
-install_cli duti
-install_cli mas
 
-echo
-echo "=== installing gui apps ==="
-function install_app() {
+function brew_install_gui() {
   echo "installing $2"
   if [[ -e "/Applications/$1.app" ]]; then
     :
@@ -48,14 +27,43 @@ function install_app() {
   fi
 }
 
-install_app "iTerm" iterm2
-install_app "1Password" 1password
-install_app "Rectangle" rectangle
-install_app "Brave Browser" brave-browser
-install_app "Google Chrome" google-chrome
-install_app "Visual Studio Code" visual-studio-code
-install_app "Microsoft Teams" microsoft-teams
-install_app "Google Drive" google-drive
+echo "=== installing brew ==="
+if $(has_no brew); then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+echo "=== installing oh-my-zsh ==="
+if $(has_no omz); then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+echo "=== updating brew ==="
+brew update
+
+echo
+echo "=== installing cli tools ==="
+brew_install wget
+brew_install fzf
+brew_install rg
+brew_install fd
+brew_install jq
+brew_install tmux
+brew_install tpm
+brew_install nvim neovim
+brew_install asdf
+brew_install duti
+brew_install mas
+
+echo
+echo "=== installing gui apps ==="
+brew_install_gui "iTerm" iterm2
+brew_install_gui "1Password" 1password
+brew_install_gui "Rectangle" rectangle
+brew_install_gui "Brave Browser" brave-browser
+brew_install_gui "Google Chrome" google-chrome
+brew_install_gui "Visual Studio Code" visual-studio-code
+brew_install_gui "Microsoft Teams" microsoft-teams
+brew_install_gui "Google Drive" google-drive
 
 echo
 echo "=== installing nodejs ==="
@@ -118,8 +126,8 @@ fi
 
 echo
 echo "=== installing additional apps (long) ==="
-install_app "Slack" slack
-install_app "GIMP" gimp
+brew_install_gui "Slack" slack
+brew_install_gui "GIMP" gimp
 mas install 497799835 # xcode
 
-# install_app "Android Studio" android-studio
+# brew_install_gui "Android Studio" android-studio
