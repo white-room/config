@@ -111,7 +111,7 @@ duti -s com.microsoft.VSCode public.shell-script all
 echo
 echo "=== updating hosts file ==="
 if [[ -z "$(grep citypassdev /etc/hosts)" ]]; then
-  echo "127.0.0.1	localhost,www.camp.local.citypassdev.com,de.camp.local.citypassdev.com,es.camp.local.citypassdev.com,fr.camp.local.citypassdev.com,it.camp.local.citypassdev.com,ja.camp.local.citypassdev.com,pt.camp.local.citypassdev.com,zh.camp.local.citypassdev.com,dev.mycitypassdev.com" | sudo tee -a /etc/hosts
+  echo "127.0.0.1	localhost,www.local.camp.citypassdev.com,de.local.camp.citypassdev.com,es.local.camp.citypassdev.com,fr.local.camp.citypassdev.com,it.local.camp.citypassdev.com,ja.local.camp.citypassdev.com,pt.local.camp.citypassdev.com,zh.local.camp.citypassdev.com,dev.mycitypassdev.com" | sudo tee -a /etc/hosts
 fi
 
 echo
