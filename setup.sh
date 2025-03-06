@@ -108,6 +108,8 @@ duti -s com.microsoft.VSCode public.plain-text all
 duti -s com.microsoft.VSCode public.source-code all
 duti -s com.microsoft.VSCode public.shell-script all
 
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
 echo
 echo "=== updating hosts file ==="
 if [[ -z "$(grep citypassdev /etc/hosts)" ]]; then
