@@ -15,9 +15,20 @@ return {
   },
 
   {
+    "rebelot/kanagawa.nvim",
+  },
+
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "kanagawa",
+    },
+  },
+
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = {
+      cursor_color = "#ffffff",
     },
   },
 }

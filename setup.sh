@@ -53,6 +53,8 @@ brew_install nvim neovim
 brew_install asdf
 brew_install duti
 brew_install mas
+brew_install gh
+brew_install lazygit
 
 echo
 echo "=== installing gui apps ==="
@@ -115,6 +117,8 @@ echo "=== updating hosts file ==="
 if [[ -z "$(grep citypassdev /etc/hosts)" ]]; then
   echo "127.0.0.1	localhost,www.local.camp.citypassdev.com,de.local.camp.citypassdev.com,es.local.camp.citypassdev.com,fr.local.camp.citypassdev.com,it.local.camp.citypassdev.com,ja.local.camp.citypassdev.com,pt.local.camp.citypassdev.com,zh.local.camp.citypassdev.com,dev.mycitypassdev.com" | sudo tee -a /etc/hosts
 fi
+
+gh extension install dlvhdr/gh-dash
 
 echo
 echo "=== installing xcode command line tools ==="
